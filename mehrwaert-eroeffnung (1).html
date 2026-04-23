@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEHRWÄRT Eröffnung - Helfer-Anmeldung</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c8102e;
+            --primary-light: #e41e3f;
+            --accent: #8b0000;
+            --warm: #ff6b6b;
+            --bg: #faf9f6;
+            --text: #1a1a1a;
+            --text-light: #666;
+            --shadow: rgba(200, 16, 46, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .decorative-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--primary) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, var(--accent) 1px, transparent 1px);
+            background-size: 50px 50px, 70px 70px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .gvob-logo {
+            max-width: 300px;
+            height: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--primary);
+            margin-bottom: 15px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .intro-text {
+            max-width: 600px;
+            margin: 30px auto 0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text);
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px var(--shadow);
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-card {
+            background: white;
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px var(--shadow);
+            animation: fadeIn 1s ease-out 0.5s backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--warm));
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .optional {
+            font-weight: 300;
+            text-transform: none;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            letter-spacing: 0;
+        }
+
+        input[type="text"],
+        input[type="time"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Work Sans', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg);
+        }
+
+        input[type="text"]:focus,
+        input[type="time"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(45, 80, 22, 0.1);
+        }
+
+        .time-section {
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.05), rgba(244, 162, 97, 0.05));
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .time-section h3 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .time-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .success-message p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .entries-section {
+            margin-top: 60px;
+            animation: fadeIn 1s ease-out 0.7s backwards;
+        }
+
+        .entries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .entries-section h2 {
+            font-family: 'DM Serif Display', serif;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .entry-count {
+            background: var(--accent);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .entries-list {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .entry-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .entry-item:last-child {
+            border-bottom: none;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .entry-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .entry-time {
+            background: var(--bg);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        .entry-company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .no-entries {
+            text-align: center;
+            color: var(--text-light);
+            padding: 40px;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 30px 20px;
+            }
+
+            .time-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .entries-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .entry-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .entry-time {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-bg"></div>
+    
+    <div class="container">
+        <div class="logo-container">
+            <img src="gvob-logo.png" alt="GVOB Logo" class="gvob-logo">
+        </div>
+        
+        <header>
+            <h1>Lokal Eröffnung</h1>
+            <p class="subtitle">Samstag, 25. April 2026 • 10:00 – 20:00 Uhr</p>
+            <div class="intro-text">
+                Wir eröffnen unseren neuen Treffpunkt im MEHRWÄRT Lokal an der Hauptstrasse 20 in Oberwil! 
+                <br><br>
+                <strong>Möchtest du uns helfen?</strong> Mit Grill, Lachs & Güppli vom Fischlädeli, Kaffee & Kuchen wird es ein langer Tag. 
+                Trage dich hier ein und gib an, wann du verfügbar bist. Alle Angaben sind freiwillig – aber sehr hilfreich für unsere Planung!
+            </div>
+        </header>
+
+        <div class="form-card">
+            <form id="helperForm">
+                <div class="form-group">
+                    <label>Firma <span class="optional">(optional)</span></label>
+                    <input type="text" id="firma" name="firma" placeholder="Deine Firma">
+                </div>
+
+                <div class="form-group">
+                    <label>Vorname <span class="optional">(optional)</span></label>
+                    <input type="text" id="vorname" name="vorname" placeholder="Dein Vorname">
+                </div>
+
+                <div class="form-group">
+                    <label>Nachname <span class="optional">(optional)</span></label>
+                    <input type="text" id="nachname" name="nachname" placeholder="Dein Nachname">
+                </div>
+
+                <div class="time-section">
+                    <h3>Verfügbarkeit</h3>
+                    <div class="time-inputs">
+                        <div class="form-group">
+                            <label>Von</label>
+                            <input type="time" id="timeFrom" name="timeFrom" min="10:00" max="20:00" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Bis</label>
+                            <input type="time" id="timeTo" name="timeTo" min="10:00" max="20:00" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit">Als Helfer eintragen</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                <h3>Vielen Dank! 🙌</h3>
+                <p>Deine Anmeldung wurde erfolgreich gespeichert.</p>
+            </div>
+        </div>
+
+        <div class="entries-section">
+            <div class="entries-header">
+                <h2>Helfer-Übersicht</h2>
+                <div class="entry-count" id="entryCount">0 Helfer</div>
+            </div>
+            <div class="entries-list" id="entriesList">
+                <div class="no-entries">Noch keine Einträge vorhanden</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // LocalStorage für die Daten
+        const STORAGE_KEY = 'mehrwaert_helfer';
+
+        // Lade gespeicherte Daten
+        function loadEntries() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Speichere Daten
+        function saveEntries(entries) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+        }
+
+        // Aktualisiere die Anzeige
+        function updateEntriesList() {
+            const entries = loadEntries();
+            const entriesList = document.getElementById('entriesList');
+            const entryCount = document.getElementById('entryCount');
+
+            entryCount.textContent = `${entries.length} Helfer`;
+
+            if (entries.length === 0) {
+                entriesList.innerHTML = '<div class="no-entries">Noch keine Einträge vorhanden</div>';
+                return;
+            }
+
+            // Sortiere nach Zeit
+            entries.sort((a, b) => a.timeFrom.localeCompare(b.timeFrom));
+
+            entriesList.innerHTML = entries.map(entry => {
+                const displayName = [entry.vorname, entry.nachname].filter(Boolean).join(' ') || 'Anonymer Helfer';
+                const displayCompany = entry.firma ? entry.firma : '';
+                
+                return `
+                    <div class="entry-item">
+                        <div class="entry-header">
+                            <div>
+                                <div class="entry-name">${displayName}</div>
+                                ${displayCompany ? `<div class="entry-company">${displayCompany}</div>` : ''}
+                            </div>
+                            <div class="entry-time">${entry.timeFrom} - ${entry.timeTo}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Form Submit Handler
+        document.getElementById('helperForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                firma: document.getElementById('firma').value.trim(),
+                vorname: document.getElementById('vorname').value.trim(),
+                nachname: document.getElementById('nachname').value.trim(),
+                timeFrom: document.getElementById('timeFrom').value,
+                timeTo: document.getElementById('timeTo').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Validierung: mindestens Zeitangaben müssen vorhanden sein
+            if (!formData.timeFrom || !formData.timeTo) {
+                alert('Bitte gib deine Verfügbarkeit an (von - bis)');
+                return;
+            }
+
+            // Validierung: "Bis" muss nach "Von" sein
+            if (formData.timeFrom >= formData.timeTo) {
+                alert('Die End-Zeit muss nach der Start-Zeit liegen');
+                return;
+            }
+
+            // Speichern
+            const entries = loadEntries();
+            entries.push(formData);
+            saveEntries(entries);
+
+            // Erfolgsanzeige
+            const form = document.getElementById('helperForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+
+            // Liste aktualisieren
+            updateEntriesList();
+
+            // Form nach 3 Sekunden wieder anzeigen und zurücksetzen
+            setTimeout(() => {
+                form.reset();
+                form.style.display = 'block';
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+
+        // Initial laden
+        updateEntriesList();
+    </script>
+</body>
+</html>
